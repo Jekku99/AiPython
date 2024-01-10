@@ -18,9 +18,10 @@ print(df2)
 df3 = pd.get_dummies(data=df2, columns=['job','marital','default','housing','poutcome'])
 print(df3)
 
-# 4) En saanut heatmappia toimimaan. En ole varma kuinka tekisin tämän ja eri tavat mitä yritin eivät toimineet.
-#sns.heatmap(data=df3.corr(), annot=True)
-#plt.show()
+# 4) Ohjelma ei ymmärtänyt y arvon 'yes' ja 'no' arvoja. Muutin ne booleaniksi joka ratkaisi tämän. Testasin lopun ehjelman toiminnan ilman y:n muutosta ja sen kanssa ja tulokset olivat samat. 
+df3['y'] = df3['y'] == 'yes'
+sns.heatmap(data=df3.corr(), annot=True)
+plt.show()
 
 # 5) 
 X = df3.iloc[:, 1:-1].values
